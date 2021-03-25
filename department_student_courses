@@ -1,0 +1,236 @@
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+
+
+
+
+  public class Course
+  {
+    public int courseCode;
+
+    public Course(int a)
+    {
+      courseCode=a;
+
+
+    }
+
+
+  }
+    
+       public class Department
+        {
+
+          
+    //public string deptName{ get; set; }
+    //public string semesterName{ get; set; }
+        
+ //Student[] s=new Student[100];
+ List<Student> s1 = new List<Student>();
+ public List<Course> c3= new List<Course>();
+public string[] subjectName = new string[100];
+
+
+public Department()
+{
+  
+}
+           
+public void  addStudent(Student roy)
+{
+
+s1.Add(roy);
+
+}
+
+
+            public void offersubject()
+            {
+               
+                
+                    subjectName[0]="Math 1";
+                    subjectName[1] = "Math 2";
+                     subjectName[2] = "Java";
+                     subjectName[3] = "C#";
+                    subjectName[4] = "Device";
+                      subjectName[5] = "Ooad";
+           
+            }
+
+            public void showCourses()
+            {
+                Console.WriteLine("Offered courses are : \n");
+                for (int i = 0; i < 5; i++)
+                {
+                    int xx = i + 1;
+                    Console.WriteLine(xx + "." + "" + subjectName[i]);
+
+                }
+
+            }
+
+
+            public void showStudents()
+            {int t=0;
+              foreach(Student student in s1 )
+              {
+                Console.WriteLine("  ...............Student no {0}............",t++);
+                 Console.WriteLine("  Student Name : {0}",student.name);
+                 Console.WriteLine(" Id : {0}",student.id);
+                 Console.WriteLine(" \nSelected courses are : \n");
+                 foreach( var v in student.c2)
+                 {
+                   Console.WriteLine("  CourseCode:{0}   Courese name : {1} ",v.courseCode,subjectName[v.courseCode]);
+                 }
+
+              }
+             
+            }
+
+
+
+        }
+       public class Student 
+        {
+           public string name{set;get;}
+           public string id{set;get;}
+           //public int val;
+ 
+//Course[] c=new Course[5];
+public List<Course> c1= new List<Course>();
+public List<Course> c2= new List<Course>();
+        //string[] cs = new string[4];
+
+
+public Student()
+{
+  
+
+}
+
+
+        public Student (string name1,string id1,int xx)
+        {
+          //val=xx;
+          name = name1;
+          id=id1;
+         c2= this.takeCourse(xx);
+
+        }
+       
+      //  public List<Course> returnCourse()
+      //  {
+      //    return c2;
+      //  }
+
+      //  public string returnName()
+      //  {
+      //    return name;
+      //  } 
+      //  public string returnId()
+      //  {
+      //    return id;
+      //  }    
+            
+            
+            
+            
+            
+            
+            public List<Course> takeCourse(int xx)
+            {
+            
+           
+         
+               Console.WriteLine("\nEnter the courses code you want to take");
+              for(int i =0 ; i< xx ; i++)
+              {
+                Console.Write("Enter  no  {0}  courses code : ",i+1);
+                int x = Convert.ToInt32(Console.ReadLine());
+
+               
+                c1.Add(new Course(x));
+               
+              }
+               
+
+
+           return c1;
+
+        }
+
+            
+        }
+
+        public class Start
+        {
+            static void Main(string[] args)
+            {
+                Console.WriteLine("\n1.Department");
+                int x = Convert.ToInt32(Console.ReadLine());
+                if (x == 1)
+                 {
+                   Department dpt = new Department();
+                  Console.WriteLine("Your available courses:");
+                  dpt.offersubject();
+                   
+                   dpt.showCourses();
+
+                   
+                    
+                    for(int j=0;j<2;j++)
+                    {
+                      string s1,s2;
+                    Console.WriteLine("Enter student  name : \n");
+                    s1=Console.ReadLine();
+                    Console.WriteLine("Enter student  id : \n");
+                    s2=Console.ReadLine();
+                          Console.WriteLine("Enter the no. of courses you want to take");
+                   int xx = Convert.ToInt32(Console.ReadLine());
+                   
+                    if (xx > 5)
+                    {
+                        Console.WriteLine("Not allowed to take more than 5 subject");
+                    }
+                    else
+                    {
+                      
+                       Student st = new Student(s1,s2,xx); 
+                        dpt.addStudent(st);
+                        dpt.showStudents();
+                        //st.takeCourse(xx);
+                    }
+
+
+                    }
+                  
+                            
+
+
+                        
+
+
+                }
+
+               
+
+
+
+
+
+            //Console.ReadKey();
+
+
+
+
+            }
+
+        }
+    }
